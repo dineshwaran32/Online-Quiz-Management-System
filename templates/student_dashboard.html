@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/student_dash.css">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+    {% for quiz in quizzes %}
+    <h2>{{ quiz.title }}</h2>
+    <p>{{ quiz.description }}</p>
+    <form action="{{ url_for('quiz', quiz_id=quiz._id) }}" method="POST">
+        <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="hidden" name="quiz_id" value="{{ quiz._id }}">
+            <input type="submit" value="Start Quiz" class="btn solid" />
+        </div>
+    </form>
+    {% endfor %}
+</body>
+</html>

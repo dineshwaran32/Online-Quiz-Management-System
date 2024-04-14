@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/teacher_dash.css">
+    <title>Teacher Dashboard</title>
+</head>
+<body> 
+    <h1>Welcome, {{ session['user'] }} (Teacher)</h1>
+    <form action="{{ url_for('create_quiz') }}" method="POST">
+      <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="submit" value="ADD QUIZ" name="addquiz" class="btn solid" />
+      </div>
+  </form>   
+  
+  
+  
+  
+</body>
+</html>

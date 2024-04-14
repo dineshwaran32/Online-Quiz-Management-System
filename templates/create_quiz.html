@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/create_quiz.css">
+    <title>Create Quiz</title>
+
+</head>
+<body>
+    <h1>Create Quiz</h1>
+    <form action="/create_quiz" method="POST"> 
+        <label for="title">Quiz Title:</label><br>
+        <input type="text"  id="title" name="title" required/><br><br>
+        <label for="description">Quiz Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+        <label for="duration">Duration (minutes):</label><br>
+        <input type="number" id="duration" name="duration" required><br><br>
+        <label for="num_questions">Number of Questions:</label><br>
+        <input type="number" id="num_questions" name="num_questions" required><br><br>
+        <div id="questions"></div>
+        <button type="button" onclick="addQuestion()">Add Question</button><br><br>
+        <label for="visible_to_students">Visible to Students:</label>
+        <input type="checkbox" id="visible_to_students" name="visible_to_students"><br><br>
+        <label for="start_time">Start Time:</label>
+        <input type="datetime-local" id="start_time" name="start_time" required><br><br>
+        <input type="submit" value="Create Quiz">
+    </form>
+    <script>
+        let questionCount = 0;
+        function addQuestion() {
+            questionCount++;
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <h3>Question ${questionCount}</h3>
+                <label for="question_${questionCount}">Question:</label><br>
+                <input type="text" id="question_${questionCount}" name="question_${questionCount}" required><br><br>
+    
+                <label for="option_${questionCount}_1">Option 1:</label><br>
+                <input type="text" id="option_${questionCount}_1" name="option_${questionCount}_1" required><br><br>
+    
+                <label for="option_${questionCount}_2">Option 2:</label><br>
+                <input type="text" id="option_${questionCount}_2" name="option_${questionCount}_2" required><br><br>
+    
+                <label for="option_${questionCount}_3">Option 3:</label><br>
+                <input type="text" id="option_${questionCount}_3" name="option_${questionCount}_3" required><br><br>
+    
+                <label for="option_${questionCount}_4">Option 4:</label><br>
+                <input type="text" id="option_${questionCount}_4" name="option_${questionCount}_4" required><br><br>
+    
+                <label for="correct_answer_${questionCount}">Correct Answer:</label><br>
+                <input type="text" id="correct_answer_${questionCount}" name="correct_answer_${questionCount}" required><br><br>
+    
+                <label for="score_${questionCount}">Score:</label><br>
+                <input type="number" id="score_${questionCount}" name="score_${questionCount}" required><br><br>
+            `;
+            document.getElementById('questions').appendChild(div);
+        }
+    </script>
+</body>
+</html>

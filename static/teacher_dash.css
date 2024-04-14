@@ -1,0 +1,60 @@
+/* Add this CSS to your existing stylesheet or create a new one */
+
+/* Style for the h1 element */
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the form */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the input field */
+.input-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Style for the submit button */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the icon */
+i.fas.fa-user {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+    form {
+        max-width: 100%;
+    }
+}
