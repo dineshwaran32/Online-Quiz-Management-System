@@ -25,7 +25,7 @@ ans = db["answers"]
 
 @app.route("/")
 def admi():
-    return render_template("analytics.html")
+    return render_template("login.html")
 @app.route("/login", methods=['POST'])
 def login():
     user = request.form['username']
@@ -158,7 +158,7 @@ def quiz_results(quiz_id):
     if not answer:
         return "Quiz results not found", 404
 
-    total_score = answer.get("answers", {}).get("Total Score", 0)
+    total_score = answer.get("totalscore", 0)
 
     if request.method == 'POST':
         if 'Back' in request.form:

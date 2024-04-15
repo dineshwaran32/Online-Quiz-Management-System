@@ -1,0 +1,15 @@
+html, body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background: url('/static/img/J4o.gif') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.result
+{
+    background-color: aliceblue;
+    opacity: 9px;
+    font-size: medium;
+    color:red;
+}
