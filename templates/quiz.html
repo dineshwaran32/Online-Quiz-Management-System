@@ -13,7 +13,7 @@
     <form id="quizForm" action="/submit_quiz" method="POST">
         {% for question in questions %}
         <div>
-            <p>{{ question.question }}</p>
+            <p >{{ question.question }}</p>
             <button class="speakButton" data-question="{{ question.question }}">Speak</button>
             <hr>
             {% for option in question.options %}

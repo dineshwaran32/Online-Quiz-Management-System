@@ -52,20 +52,25 @@ def teacher_dashboard():
     if request.method == 'POST':
         if 'addquiz' in request.form:
             return redirect('/create_quiz')
+        if 'Back' in request.form:
+            return redirect('/')
 
     return render_template('teacher_dashboard.html')
 
 @app.route('/create_quiz', methods=['POST'])
 def create_quiz():
+    if 'Back' in request.form:
+            return redirect('/')
+    
     if request.method == 'POST':
         if 'title' not in request.form:
             return render_template('create_quiz.html', error='Quiz title is required')
+        
 
         title = request.form['title']
         description = request.form['description']
         duration = request.form['duration']
         num_questions = request.form['num_questions']
-        visible_to_students = 'visible_to_students' in request.form
         start_time = request.form['start_time']
 
         quiz_data = {
@@ -73,7 +78,6 @@ def create_quiz():
             'description': description,
             'duration': duration,
             'num_questions': num_questions,
-            'visible_to_students': visible_to_students,
             'start_time': start_time,
             'questions': []
         }
@@ -96,6 +100,7 @@ def create_quiz():
 
         db['quizzes'].insert_one(quiz_data)
         return redirect(url_for('teacher_dashboard'))
+    
     return render_template('create_quiz.html')
 
 @app.route('/studentdashboard', methods=['GET', 'POST'])

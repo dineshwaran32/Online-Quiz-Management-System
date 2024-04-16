@@ -7,6 +7,7 @@
     <title>Quiz</title>
 </head>
 <body>
+    <div>
     <h1>Quiz</h1>
     {% for quiz in quizzes %}
     <h2>{{ quiz.title }}</h2>
@@ -19,5 +20,7 @@
         </div>
     </form>
     {% endfor %}
+
+    </div>
 </body>
 </html>
