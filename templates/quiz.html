@@ -13,8 +13,8 @@
     <form id="quizForm" action="/submit_quiz" method="POST">
         {% for question in questions %}
         <div>
-            <p >{{ question.question }}</p>
-            <button class="speakButton" data-question="{{ question.question }}">Speak</button>
+            <p>{{ question.question }}</p>
+            <button class="speakButton" data-question="{{ question.question }}" data-options="{{ ' '.join(question.options) }}" onclick="">Speak</button>
             <hr>
             {% for option in question.options %}
             <label>
@@ -28,18 +28,6 @@
         <input type="submit" id="submitButton" value="Submit">
     </form>
 
-    <script>
-        const speakButtons = document.querySelectorAll('.speakButton');
-        const synth = window.speechSynthesis;
-
-        speakButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const questionText = button.getAttribute('data-question');
-                const utterance = new SpeechSynthesisUtterance(questionText);
-                synth.speak(utterance);
-                event.preventDefault(); 
-            });
-        });
-    </script>
+    <script src="/static/script.js"></script>
 </body>
 </html>

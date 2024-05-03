@@ -4,6 +4,7 @@ from bson import ObjectId
 
 from pymongo import MongoClient
 import datetime
+import json
 
 from jinja2 import Environment
 
@@ -21,7 +22,7 @@ stulogin = db["stulogin"]
 tealogin = db["tealogin"]
 qui = db["quizzes"]
 ans = db["answers"]
-
+collection = db["answers"]
 
 @app.route("/")
 def admi():
@@ -47,15 +48,50 @@ def login():
 
 
 
+
 @app.route('/teacherdashboard', methods=['GET', 'POST'])
 def teacher_dashboard():
     if request.method == 'POST':
         if 'addquiz' in request.form:
             return redirect('/create_quiz')
+        if 'analytics' in request.form:
+            return redirect('/analytics')
         if 'Back' in request.form:
             return redirect('/')
 
     return render_template('teacher_dashboard.html')
+
+
+@app.route('/analytics')
+def analytics():
+    # Fetch data from MongoDB
+    data = list(collection.find({}))
+
+    # Process data for the bar graph
+    chart_data = {}
+    for entry in data:
+        quiz_id = entry['quiz_id']
+        username = entry['username']
+        totalscore = entry['totalscore']
+        if quiz_id not in chart_data:
+            chart_data[quiz_id] = {}
+        chart_data[quiz_id][username] = totalscore
+
+    # Prepare data for the chart
+    labels = []
+    datasets = []
+    for quiz_id, scores in chart_data.items():
+        labels.append(quiz_id)
+        scores_data = []
+        for username, score in scores.items():
+            scores_data.append(score)
+        datasets.append({
+            'label': quiz_id,
+            'data': scores_data
+        })
+
+    return render_template('index.html', labels=json.dumps(labels), datasets=json.dumps(datasets))
+
 
 @app.route('/create_quiz', methods=['POST'])
 def create_quiz():
