@@ -18,8 +18,8 @@ def index():
     # Process data for the bar graph
     chart_data = {}
     for entry in data:
-        quiz_id = entry['quiz_id']
-        username = entry['username']
+        quiz_id = entry['quiz']
+        username = entry['name']
         totalscore = entry['totalscore']
         if quiz_id not in chart_data:
             chart_data[quiz_id] = {}
